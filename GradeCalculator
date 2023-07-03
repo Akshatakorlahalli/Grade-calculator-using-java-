@@ -1,0 +1,286 @@
+package oops;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+class BlankBoxException extends Exception {}
+class MarksException extends Exception {}
+class CIEException extends Exception {}
+
+
+class Features extends JFrame implements ActionListener {
+
+	int ia1, ia2, ia3, cta, see, cie;
+	JPanel p, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12;
+	JLabel l, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11;
+	JTextField t1, t2, t3, t4, t5, t6, t7;
+	JButton b;
+
+	Features(String title) {
+		super(title);
+
+		// heading panel
+		p = new JPanel();
+		p.setBounds(90, 15, 350, 50);
+		l = new JLabel("Grade Calculator");
+		Font font = l.getFont();
+		float fontSize = 22.0f; // Setting font size
+		l.setFont(font.deriveFont(fontSize));
+		p.add(l);
+
+		// 2nd panel
+		p2 = new JPanel();
+		p2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		p2.setBackground(Color.lightGray);
+		p2.setBounds(100, 100, 300, 50);
+		l2 = new JLabel("Enter ia1 marks:");
+		Font font1 = l2.getFont();
+		float fontSize1 = 16.0f;
+		l2.setFont(font1.deriveFont(fontSize1));
+		t2 = new JTextField(5);
+		t2.setPreferredSize(new Dimension(50, 30));
+		p2.add(l2);
+		p2.add(t2);
+
+		// 3rd panel
+		p3 = new JPanel();
+		p3.setBounds(100, 150, 300, 50);
+		p3.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		p3.setBackground(Color.lightGray);
+		l3 = new JLabel("Enter ia2 marks:");
+		Font font2 = l3.getFont();
+		float fontSize2 = 16.0f;
+		l3.setFont(font2.deriveFont(fontSize2));
+		t3 = new JTextField(5);
+		t3.setPreferredSize(new Dimension(50, 30));
+		p3.add(l3);
+		p3.add(t3);
+
+		// 4th panel
+		p4 = new JPanel();
+		p4.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		p4.setBackground(Color.lightGray);
+		p4.setBounds(100, 200, 300, 50);
+		l4 = new JLabel("Enter ia3 marks:");
+		Font font3 = l4.getFont();
+		float fontSize3 = 16.0f;
+		l4.setFont(font3.deriveFont(fontSize3));
+		t4 = new JTextField(5);
+		t4.setPreferredSize(new Dimension(50, 30));
+		p4.add(l4);
+		p4.add(t4);
+
+		// 5th panel
+		p5 = new JPanel();
+		p5.setBounds(100, 250, 300, 50);
+		p5.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		p5.setBackground(Color.lightGray);
+		l5 = new JLabel("Enter cta marks:");
+		Font font4 = l2.getFont();
+		float fontSize4 = 16.0f;
+		l5.setFont(font4.deriveFont(fontSize4));
+		t5 = new JTextField(5);
+		t5.setPreferredSize(new Dimension(50, 30));
+		p5.add(l5);
+		p5.add(t5);
+
+		// 6th panel
+		p6 = new JPanel();
+		p6.setBounds(100, 300, 300, 50);
+		p6.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		p6.setBackground(Color.lightGray);
+		l6 = new JLabel("Enter see marks:");
+		Font font5 = l6.getFont();
+		float fontSize5 = 16.0f;
+		l6.setFont(font5.deriveFont(fontSize5));
+		t6 = new JTextField(5);
+		t6.setPreferredSize(new Dimension(50, 30));
+		p6.add(l6);
+		p6.add(t6);
+
+		// 7th panel for button
+		p7 = new JPanel();
+		p7.setBounds(100, 360, 300, 50);
+		b = new JButton("Calculate");
+		b.addActionListener(this);
+		b.setPreferredSize(new Dimension(150, 35));
+		p7.add(b);
+
+		// 8th panel for total marks
+		p8 = new JPanel();
+		p8.setBounds(75, 415, 200, 35);
+		l8 = new JLabel("Total marks : ");
+		Font font8 = l8.getFont();
+		float fontSize8 = 16.0f;
+		l8.setFont(font8.deriveFont(fontSize8));
+		p8.add(l8);
+
+		// 9th panel for grade
+		p9 = new JPanel();
+		p9.setBounds(75, 451, 200, 35);
+		l9 = new JLabel("Grade : ");
+		Font font9 = l2.getFont();
+		float fontSize9 = 16.0f;
+		l9.setFont(font9.deriveFont(fontSize9));
+		p9.add(l9);
+
+		// 10th panel
+		p10 = new JPanel();
+		p10.add(p9);
+
+		// 11th panel for total marks display
+		p11 = new JPanel();
+		p11.setBounds(215, 415, 50, 35);
+		l10 = new JLabel();
+		Font font11 = l10.getFont();
+		float fontSize11 = 16.0f; // Setting font size
+		l10.setFont(font11.deriveFont(fontSize11));
+		p11.add(l10);
+
+		// 12th panel for grade display
+		p12 = new JPanel();
+		p12.setBounds(195, 451, 40, 35);
+		l11 = new JLabel();
+		Font font12 = l11.getFont();
+		float fontSize12 = 16.0f; // Setting font size
+		l11.setFont(font12.deriveFont(fontSize12));
+		p12.add(l11);
+
+		// adding panels to frame
+		this.add(p);
+		this.add(p2);
+		this.add(p3);
+		this.add(p4);
+		this.add(p5);
+		this.add(p6);
+		this.add(p7);
+		this.add(p8);
+		this.add(p9);
+		this.add(p11);
+		this.add(p12);
+		this.add(p10);
+
+	}
+
+	int marks() { // method to calculate total marks
+
+		try {
+			if (t2.getText().isEmpty() || t3.getText().isEmpty() || t4.getText().isEmpty() || t6.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(this, "No marks entered. Incase of absent enter marks as 0");
+				System.exit(EXIT_ON_CLOSE);
+			}
+			if (t5.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(this, "No cta marks entered.");
+				System.exit(EXIT_ON_CLOSE);
+			}
+
+			ia1 = Integer.parseInt(t2.getText());
+			ia2 = Integer.parseInt(t3.getText());
+			ia3 = Integer.parseInt(t4.getText());
+			cta = Integer.parseInt(t5.getText());
+			see = Integer.parseInt(t6.getText());
+
+		} catch (NumberFormatException nfe) {
+			System.out.println("");
+		}
+
+		try {
+			if (ia1 < 0 || ia1 > 20 || ia2 < 0 || ia2 > 20 || ia3 < 0 || ia3 > 20 || cta < 0 || cta > 10 || see < 0
+					|| see > 100) {
+				throw new MarksException();
+			}
+		} catch (MarksException ime) {
+			JOptionPane.showMessageDialog(this, "Invalid marks entered.");
+			System.exit(EXIT_ON_CLOSE);
+
+		}
+
+		int low, total;
+
+		low = ia1;
+		if (ia2 < low) {
+			low = ia2;
+		}
+		if (ia3 < low) {
+			low = ia3;
+		}
+
+		cie = ia1 + ia2 + ia3 - low + cta;
+
+		try {
+			if (cie < 20) {
+				throw new CIEException();
+			}
+		} catch (CIEException ciee) {
+			JOptionPane.showMessageDialog(this, "Student is detained from taking SEE.");
+			System.exit(EXIT_ON_CLOSE);
+		}
+
+		if (see == 38 || see == 39) {
+			see = 40;
+		}
+
+		int halfSee;
+		if (see % 2 != 0) {
+			halfSee = (int) ((.5 * see) + 1);
+		} else {
+			halfSee = (int) ((.5 * see));
+		}
+
+		int totalMarks = (int) (cie + halfSee);
+		return totalMarks;
+
+	}
+
+	String calcul() { // method to calculate grade
+
+		int totalMarks = marks();
+
+		if (see < 38) {
+			l10.setText(" ");
+			return "F";
+		} else if (totalMarks >= 90 && totalMarks <= 100) {
+			return "S";
+		} else if (totalMarks >= 80 && totalMarks < 90) {
+			return "A";
+		} else if (totalMarks >= 70 && totalMarks < 80) {
+			return "B";
+		} else if (totalMarks >= 60 && totalMarks < 70) {
+			return "C";
+		} else if (totalMarks >= 50 && totalMarks < 60) {
+			return "D";
+		} else if (totalMarks >= 40 && totalMarks < 50) {
+			return "E";
+		} else {
+			return "F";
+		}
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		l10.setText(" " + marks());
+		l11.setText(calcul());
+	}
+
+}
+
+public class GradeCalculator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame jf = new Features("Students' Grading System");
+
+		jf.setSize(500, 550);
+		jf.setBounds(350, 200, 500, 600);
+		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		jf.setVisible(true);
+
+	}
+
+}
